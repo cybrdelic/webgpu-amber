@@ -1,0 +1,5 @@
+{
+  "name": "Remix: Amber Fly WebGPU Simulation",
+  "description": "A photorealistic WebGPU simulation of amber with a fly trapped inside, built with Three.js.",
+  "requestFramePermissions": []
+}
