@@ -33,7 +33,7 @@ export default function EmeraldApp() {
       containerRef.current!.appendChild(renderer.domElement);
 
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x020d06);
+      scene.background = new THREE.Color(0x061a0c);
 
       const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
       camera.position.set(0, 1.5, 7);
@@ -70,13 +70,13 @@ export default function EmeraldApp() {
 
       // Primary emerald material — deep refractive green, beryl IOR
       const emeraldMat = new THREE.MeshPhysicalMaterial({
-        color: 0x0a9e50,
-        emissive: new THREE.Color(0x002810),
-        emissiveIntensity: 0.2,
+        color: 0x0fcc60,
+        emissive: new THREE.Color(0x006828),
+        emissiveIntensity: 0.5,
         metalness: 0.0,
-        roughness: 0.04,
+        roughness: 0.08,
         ior: 1.566,
-        transmission: 0.94,
+        transmission: 0.7,
         thickness: 2.8,
         attenuationColor: new THREE.Color(0x003c18),
         attenuationDistance: 1.6,
@@ -192,11 +192,11 @@ export default function EmeraldApp() {
       }
 
       // --- CINEMATIC LIGHTING ---
-      const ambientLight = new THREE.AmbientLight(0x0a2015, 0.8);
+      const ambientLight = new THREE.AmbientLight(0x0a2015, 1.5);
       scene.add(ambientLight);
 
       // Key: cool white overhead
-      const keyLight = new THREE.SpotLight(0xffffff, 80);
+      const keyLight = new THREE.SpotLight(0xffffff, 120);
       keyLight.position.set(3, 9, 4);
       keyLight.angle = Math.PI / 5;
       keyLight.penumbra = 0.45;
@@ -204,25 +204,25 @@ export default function EmeraldApp() {
       scene.add(keyLight);
 
       // Deep green backlight — makes crystal glow from within
-      const backLight = new THREE.PointLight(0x00ff55, 70);
+      const backLight = new THREE.PointLight(0x00ff55, 120);
       backLight.position.set(-4, -2, -5);
       backLight.decay = 1.6;
       scene.add(backLight);
 
       // Violet/blue accent
-      const fillLight = new THREE.PointLight(0x6633ff, 25);
+      const fillLight = new THREE.PointLight(0x6633ff, 40);
       fillLight.position.set(5, -1, 3);
       fillLight.decay = 2;
       scene.add(fillLight);
 
       // Green rim
-      const rimLight = new THREE.PointLight(0x00cc44, 40);
+      const rimLight = new THREE.PointLight(0x00cc44, 70);
       rimLight.position.set(-3, 4, -2);
       rimLight.decay = 1.7;
       scene.add(rimLight);
 
       // Warm accent to pick up facet edges
-      const edgeLight = new THREE.PointLight(0xffffff, 20);
+      const edgeLight = new THREE.PointLight(0xffffff, 40);
       edgeLight.position.set(0, -5, 2);
       edgeLight.decay = 2;
       scene.add(edgeLight);
@@ -238,8 +238,8 @@ export default function EmeraldApp() {
         crystalGroup.rotation.x = 0.18 + Math.sin(time * 0.2) * 0.03;
 
         // Pulse backlight intensity for internal glow effect
-        backLight.intensity = 65 + Math.sin(time * 1.2) * 12;
-        rimLight.intensity = 35 + Math.sin(time * 0.8 + 1) * 10;
+        backLight.intensity = 115 + Math.sin(time * 1.2) * 20;
+        rimLight.intensity = 65 + Math.sin(time * 0.8 + 1) * 15;
 
         controls.update();
         renderer.render(scene, camera);
